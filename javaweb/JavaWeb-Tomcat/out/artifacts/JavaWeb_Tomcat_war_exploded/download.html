@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件下载页面</title>
+</head>
+<body>
+<h1>Download Index::</h1>
+<h3>下面是不会自动下载的部分</h3>
+<a href="downloaded/test.txt" >文本文件</a><br>
+<a href="downloaded/romuald.jpg" >图片文件</a><br>
+<a href="downloaded/windows激活工具.7z">压缩文件</a><br>
+<hr>
+<h3>下面是会自动下载的部分</h3>
+<a href="downloaded/test.txt" download="">文本文件</a><br>
+<a href="downloaded/romuald.jpg" download="">图片文件</a><br>
+<a href="downloaded/windows激活工具.7z">压缩文件</a><br>
+<hr>
+<form action="downloadServlet">
+    文件名：<input type="text" name="filename" placeholder="请输入要下载的文件名">
+    <button>下载！</button>
+</form>
+</body>
+</html>
