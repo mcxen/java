@@ -1,0 +1,11 @@
+解决办法：
+方法一：网络问题，过会重试
+方法二：取消http设置
+
+git config --global --unset http.proxy
+重启IDEA，重新push
+
+3.错误fatal:unable to access ‘http://github.com/XXX/XXX.git/’:OpenSSL SSL_connect
+git config --global http.sslVerity false
+最后一个派上了用场
+git config --global http.sslVerity false
