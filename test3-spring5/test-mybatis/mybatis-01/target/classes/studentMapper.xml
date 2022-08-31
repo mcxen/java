@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.studentMapper">
+    <select id="getAll" resultMap="getAllMap">
+        SELECT s.id sid,s.name sname,t.name tname FROM mybatis.student s,mybatis.teacher t  WHERE s.tid=t.id;
+    </select>
+<!--    这下面的Type就是resultType的意思，例如说本来是要对应Student的返回值
+        就是你要得到结果是Student的类，但因为有一个Teacher捣烂，所以
+        我们用resultMap来接受，这个resultMap里面的type就定义为Student-->
+    <resultMap id="getAllMap" type="pojo.Teacher">
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <collection property="students" ofType="pojo.Student">
+            <result property="id" column="sid"/>
+            <result property="name" column="sname"/>
+        </collection>
+    </resultMap>
+</mapper>

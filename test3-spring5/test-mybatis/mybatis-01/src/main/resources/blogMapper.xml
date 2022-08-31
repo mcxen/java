@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.blogMapper">
+    <select id="queryOne" parameterType="map" resultType="pojo.Blog">
+        select * from mybatis.blog
+<!--        <if test="title!=null">-->
+<!--            and title = #{title}-->
+<!--        </if>-->
+<!--        <if test="author!=null">-->
+<!--            and author=#{author}-->
+<!--        </if>-->
+        <where>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="author != null">
+                AND author = #{author}
+            </if>
+        </where>
+    </select>
+    <update id="updateOne" parameterType="map">
+        update mybatis.blog
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="author != null">
+                author = #{author},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

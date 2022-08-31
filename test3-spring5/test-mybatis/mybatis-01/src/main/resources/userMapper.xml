@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.userMapper">
+<!--    相当于实现了接口 id就是函数的名字-->
+    <select id="getUserList" resultType="pojo.User" >
+-- 结果集不要写ListUser ，直接写user就可以了
+        select * from mybatis.user_tb;
+    </select>
+    <select id="getUserById" resultType="pojo.User" parameterType="int">
+        select * from mybatis.user_tb where id = #{id};
+    </select>
+    <insert id="insertUser" parameterType="pojo.User">
+        insert into mybatis.user_tb values (#{id},#{name},#{pwd});
+    </insert>
+<!--这里的上面的id name pwd就是User里面的属性，直接去取就是了-->
+    <update id="updateUser" parameterType="pojo.User">
+        update mybatis.user_tb
+            set name = #{name},pwd=#{pwd}
+        where id = #{id};
+    </update>
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from mybatis.user_tb
+        where id= #{id};
+    </delete>
+
+    <select id="getUserLike" resultType="pojo.User" parameterType="String">
+        select * from mybatis.user_tb
+        where name like #{value};
+    </select>
+<!--    这里的map是别名-->
+    <select id="getUserByLimit" parameterType="map" resultType="pojo.User">
+        SELECT * From mybatis.user_tb limit ${startIndex},#{pageSize}
+    </select>
+</mapper>

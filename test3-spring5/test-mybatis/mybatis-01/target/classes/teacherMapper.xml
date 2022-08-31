@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DAO.teacherMapper">
+    <select id="getById"  resultMap="getByIdMap">
+        SELECT s.name sname,t.name tname FROM mybatis.student s,mybatis.teacher t  WHERE s.tid=t.id AND t.id=#{id};
+    </select>
+    <resultMap id="getByIdMap" type="pojo.Teacher">
+        <result property="name" column="tname"/>
+        <collection property="students" ofType="pojo.Student">
+            <result property="name" column="sname"></result>
+        </collection>
+    </resultMap>
+</mapper>
